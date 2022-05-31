@@ -1,0 +1,75 @@
+body {
+  color: #44696c;
+  background: url("space.jpg") no-repeat #000;
+  background-size: cover;
+}
+.mon {
+  margin: 50px 0 10px;
+  text-align: center;
+  transform-origin: 50% 100%;
+  animation: moving 1s infinite;
+}
+.mon img {
+  margin-right: -40px;
+  width: 115px;
+  height: auto;
+}
+.mon-name {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+  padding-bottom: 5px;
+  border-bottom: 4px solid #6dedb7;
+  font-size: 1.5em;
+  font-weight: 200;
+  text-align: center;
+}
+.spec {
+  margin: -90px 0 20px;
+  padding: 120px 20px 30px;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.spec-colon {
+  display: none;
+}
+.spec-list {
+  display: -webkit-flex;
+  display: flex;
+  list-style: none;
+}
+.spec-item {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex: 1;
+  flex: 1;
+  border-left: 1px solid #e0e0e0;
+  text-align: center;
+}
+.spec-item:first-child {
+  border-left: none;
+}
+.spec-prop {
+  order: 2;
+  font-size: 0.7em;
+  opacity: 0.6;
+}
+.spec-value {
+  order: 1;
+  margin-bottom: 0.2em;
+  font-weight: bold;
+}
+
+@keyframes moving {
+  0% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(-3deg);
+  }
+}

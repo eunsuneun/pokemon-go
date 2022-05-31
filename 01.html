@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pokemon GO</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="default.css" data-theme="default" />
+    <link rel="stylesheet alternate" href="theme.css" data-theme="pokemongo" />
+  </head>
+  <body>
+    <button id="btn-theme">테마</button>
+    <section class="container">
+      <header>
+        <div class="mon"><img src="pikachu.png" alt="피카츄" /></div>
+        <h1 class="mon-name">피카츄</h1>
+      </header>
+      <div class="spec">
+        <ul class="spec-list">
+          <li class="spec-item">
+            <span class="spec-prop">몸무게</span>
+            <span class="spec-colon">:</span>
+            <span class="spec-value">6.98kg</span>
+          </li>
+          <li class="spec-item">
+            <span class="spec-prop">속성</span>
+            <span class="spec-colon">:</span>
+            <span class="spec-value">전기</span>
+          </li>
+          <li class="spec-item">
+            <span class="spec-prop">키</span>
+            <span class="spec-colon">:</span>
+            <span class="spec-value">0.43m</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        var btnElem = document.getElementById("btn-theme"),
+          linkElem = document.querySelector('link[data-theme="pokemongo"]'),
+          useragent = navigator.userAgent.toLowerCase(),
+          refreshState = useragent.indexOf("iphone") >= 0 || useragent.indexOf("ipad") >= 0 || useragent.indexOf("android") >= 0 || useragent.indexOf("firefox") >= 0;
+
+        btnElem.addEventListener(
+          "click",
+          function () {
+            if (linkElem.getAttribute("rel").indexOf("alternate") >= 0) {
+              linkElem.setAttribute("rel", "stylesheet"); // theme.css 적용
+              localStorage.setItem("css-theme", "pokemongo"); // localStorage에 상태 저장
+            } else {
+              linkElem.setAttribute("rel", "stylesheet alternate"); // theme.css 적용 해제
+              localStorage.setItem("css-theme", "default"); // localStorage에 상태 저장
+
+              // 일부 브라우저에선 alternate가 바로 적용 안되는 현상이 있어서..
+              if (refreshState) {
+                window.location.reload();
+              }
+            }
+          },
+          false
+        );
+
+        // 처음 로드되면 localStorage의 'css-theme'를 체크해서 선택했던 테마로 세팅
+        // 이렇게 하면 브라우저를 껐다 켜도 내가 설정한 상태가 유지돼요.
+        // 크롬 개발자 도구 > Application 탭의 왼쪽 메뉴 중 Local Storage에서 삭제 가능~
+        if (localStorage.getItem("css-theme") === "pokemongo") {
+          linkElem.setAttribute("rel", "stylesheet");
+        }
+      })();
+    </script>
+  </body>
+</html>
